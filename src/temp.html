@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script defer src="app.js"></script>
+    <script defer src="app.js" type="module"></script>
     <title>Property Manager</title>
   </head>
   <body>
@@ -21,6 +21,14 @@
         <button class="signup-btn-nav nav-btn">Sign Up</button>
         <button class="login-btn-nav nav-btn">Login</button>
       </nav>
+      <nav class="nav-account-display hidden">
+        <p class="nav-account-name">Joseph</p>
+        <img
+          src="assets/user-regular.svg"
+          class="nav-account-logo icon"
+          alt=""
+        />
+      </nav>
     </header>
     <main class="main-content">
       <div class="site-description">
@@ -29,7 +37,7 @@
           Property Manager is a web application real estate owners can use to
           manage and upkeep their property no matter where in the world. You can
           save notes about your property, set reminders, automate messages to
-          tenants all with one website. Sign up below to get started.
+          tenants all with one website. Get started below.
         </p>
       </div>
       <img
@@ -37,7 +45,7 @@
         src="assets/arrow-156117_1280.png"
         alt="arrow image pointing to the login form"
       />
-      <div class="signup-form">
+      <form novalidate class="signup-form">
         <h2 class="signup-form-title">Registration</h2>
         <div class="input-container signup-username">
           <img
@@ -46,11 +54,16 @@
             alt="username icon image"
           />
           <input
-            class="input"
+            class="input signup-username-input"
             type="text"
+            pattern="([A-z]*)"
             placeholder="Create a username"
             required
           />
+          <span
+            class="form-error signup-username-error"
+            aria-live="polite"
+          ></span>
         </div>
         <div class="input-container signup-email">
           <img
@@ -59,11 +72,12 @@
             alt="email icon image"
           />
           <input
-            class="input"
+            class="input signup-email-input"
             type="email"
             placeholder="Enter your email address"
             required
           />
+          <span class="form-error signup-email-error" aria-live="polite"></span>
         </div>
         <div class="input-container signup-country">
           <img
@@ -72,11 +86,16 @@
             alt=" country icon image"
           />
           <input
-            class="input"
+            class="input signup-country-input"
             placeholder="Enter your country"
             type="text"
             required
+            pattern="([A-z]*)"
           />
+          <span
+            class="form-error signup-country-error"
+            aria-live="polite"
+          ></span>
         </div>
         <div class="input-container signup-zipcode">
           <img
@@ -85,10 +104,15 @@
             alt="zipcode icon image"
           />
           <input
-            class="input"
+            class="input signup-zipcode-input"
             type="number"
             placeholder="Enter your zip code"
+            required
           />
+          <span
+            class="form-error signup-zipcode-error"
+            aria-live="polite"
+          ></span>
         </div>
         <div class="input-container signup-password">
           <img
@@ -96,12 +120,14 @@
             src="assets/172497_lock_icon.svg"
             alt="password icon image"
           />
-          <input
-            class="input"
-            type="password"
-            placeholder="Create a password"
-            required
-          />
+          <input class="input signup-password-input" type="password"
+          placeholder="Create a password" required minlength="8"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          " />
+          <span
+            class="form-error signup-password-error"
+            aria-live="polite"
+          ></span>
         </div>
         <div class="input-container signup-confirm">
           <img
@@ -115,9 +141,13 @@
             type="password"
             required
           />
+          <span
+            class="form-error signup-confirm-error"
+            aria-live="polite"
+          ></span>
         </div>
         <div class="create-account-btn-container">
-          <button class="create-account-btn">Create Account</button>
+          <button class="create-account-btn">Submit</button>
         </div>
         <div class="already-account-container">
           <p class="already-account-text">
@@ -125,26 +155,27 @@
             <a class="already-account-link" href="#">Login here</a>
           </p>
         </div>
-      </div>
-      <div class="login-form hidden">
+      </form>
+      <form novalidate class="login-form hidden">
         <h2 class="login-form-title">Login</h2>
         <div class="input-container login-email-container">
-          <label for="input-label login-email"
+          <label for="input-label login-email-label"
             ><img
               class="icon login-email-icon"
               src="assets/2674096_object_email_web_essential_icon.svg"
               alt="Envelope Email Login Icon"
           /></label>
           <input
-            class="login-email-input"
+            class="login-email-input input"
             placeholder="Enter Your Email"
             id="login-email"
             type="email"
-            pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
+            required
           />
         </div>
+        <span class="form-error login-email-error"></span>
         <div class="input-container login-password-container">
-          <label for="input-label login-password"
+          <label for="input-label login-password-label"
             ><img
               class="icon login-password-icon"
               src="assets/172497_lock_icon.svg"
@@ -154,13 +185,14 @@
             class="input login-password-input"
             type="password"
             placeholder="Enter Your Password"
-            minlength="8"
+            required
           />
           <img
             class="icon login-password-reveal"
             src="assets/eye-slash-regular.svg"
             alt="reveal password icon"
           />
+          <span class="login-password-error form-error"></span>
         </div>
         <div class="login-extra-container">
           <div class="rememberme-checkbox">
@@ -172,14 +204,14 @@
           </div>
         </div>
         <div class="login-btn-container">
-          <button class="login-btn">Login Now</button>
+          <input type="submit" value="Login Now" class="login-btn" />
         </div>
         <div class="login-signup-container">
           <p class="login-signup-text">
-            Not a member? <a class="login-signup-link" href="">Signup Now</a>
+            Not a member? <a class="login-signup-link" href="#">Signup Now</a>
           </p>
         </div>
-      </div>
+      </form>
     </main>
     <footer></footer>
   </body>

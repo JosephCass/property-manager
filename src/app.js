@@ -1,3 +1,7 @@
+import renderSignUpFormValidation from "./modules/signUpFormValidation.js";
+import renderLoginFormValidation from "./modules/loginFormValidation.js";
+import renderUI from "./modules/addUI.js";
+
 let loginPassInput = document.querySelector(".login-password-input");
 let loginPassReveal = document.querySelector(".login-password-reveal");
 let loginBtn = document.querySelector(".login-btn");
@@ -7,6 +11,16 @@ let loginSingUpLink = document.querySelector(".login-signup-link");
 let alreadyAccountLink = document.querySelector(".already-account-link");
 let signUpForm = document.querySelector(".signup-form");
 let loginForm = document.querySelector(".login-form");
+let signupUsername = document.querySelector(".signup-username-input");
+let signupUsernameError = document.querySelector(".signup-username-error");
+let signupUsernameContainer = document.querySelector(".signup-username");
+
+let accounts = [];
+let loggedInAccount = null;
+
+function setLoggedInAccount(account) {
+  loggedInAccount = account;
+}
 
 //Functionality to reveal password in login form
 loginPassReveal.addEventListener("click", function () {
@@ -22,26 +36,6 @@ loginPassReveal.addEventListener("click", function () {
   }
 });
 
-//Functionality to switch between login form or signup form
-
-function renderLoginForm() {
-  loginForm.classList.remove("hidden");
-  signUpForm.classList.add("hidden");
-}
-
-function renderSignUpForm() {
-  loginForm.classList.add("hidden");
-  signUpForm.classList.remove("hidden");
-}
-
-//Listens for login link or button clicks
-navLoginBtn.addEventListener("click", renderLoginForm);
-alreadyAccountLink.addEventListener("click", renderLoginForm);
-
-//Listens for signup link or button clicks
-navSignUpBtn.addEventListener("click", renderSignUpForm);
-loginSingUpLink.addEventListener("click", renderSignUpForm);
-
 function validateLoginData() {}
 
 function renderAccountPage() {}
@@ -53,4 +47,9 @@ loginBtn.addEventListener("click", function () {
   }
 });
 
+renderUI();
+renderSignUpFormValidation();
+renderLoginFormValidation();
 //add boxshadow to forms and remove blue border line maybe change background
+
+export { accounts, loggedInAccount, setLoggedInAccount };

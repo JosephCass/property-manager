@@ -78,16 +78,24 @@ header {
 
 .site-description {
   padding: 3rem;
-  padding-left: 7rem;
-  padding-right: 7rem;
+  max-width: 900px;
 }
 
 .site-description-header {
   font-family: "Montserrat";
+  margin-bottom: 1rem;
 }
 
 .site-description-text {
   font-family: "Poppins", sans-serif;
+  line-height: 1.8rem;
+}
+
+.input-error {
+  /* border: 1px solid red; */
+}
+
+.input:invalid {
 }
 
 .main-below-img {
@@ -104,6 +112,7 @@ header {
   padding-right: 1rem;
   padding-left: 1rem;
   width: 80%;
+  max-width: 600px;
 }
 
 .signup-form-title {
@@ -118,6 +127,7 @@ header {
   padding-right: 1rem;
   padding-left: 1rem;
   width: 80%;
+  max-width: 600px;
 }
 
 .login-form-title {
@@ -159,6 +169,10 @@ header {
   outline: none;
   font-family: "Roboto";
   padding: 0.5rem;
+}
+
+.create-account-btn:hover {
+  cursor: pointer;
 }
 
 .already-account-container {
@@ -323,6 +337,56 @@ header {
   color: blue;
 }
 
+/* form validation */
+.input-error:focus-within .icon {
+  filter: invert(16%) sepia(89%) saturate(7494%) hue-rotate(3deg)
+    brightness(98%) contrast(117%);
+}
+
+.input-error:focus-within .input {
+  border-bottom: 1px solid red;
+}
+
+.form-error {
+  font-family: "Ubuntu";
+  color: red;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+Firefox input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.nav-account-display {
+  display: flex;
+  gap: 1rem;
+  margin-right: 0.5rem;
+  align-items: center;
+}
+
+.nav-account-name {
+  font-size: 2.5rem;
+  font-family: "Montserrat";
+  text-transform: uppercase;
+  color: white;
+}
+
+.nav-account-logo {
+  width: 2rem;
+  height: 2rem;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(227deg)
+    brightness(103%) contrast(102%);
+}
+
+.nav-account-logo:hover {
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }
@@ -330,6 +394,10 @@ header {
 @media all and (min-width: 700px) {
   :root {
     font-size: 18px;
+  }
+
+  .logo {
+    padding-left: 1rem;
   }
 
   .login-form {
